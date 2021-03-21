@@ -1,8 +1,10 @@
 import React, {Component} from 'react'
-import {BrowserRouter,Route} from 'react-router-dom'
+import {BrowserRouter,Route,Switch} from 'react-router-dom'
 import Content from './content';
 import About from './About';
+import Blog from './Blog';
 import Nav from './nav';
+import Params from './params';
 
 class Home extends Component{
     render(){
@@ -10,9 +12,15 @@ class Home extends Component{
             <div>
                 <BrowserRouter>
                     <div>
-                        <Nav></Nav>
-                        <Route exact path="/" component={Content}></Route>
-                        <Route path="/about" component={About}></Route>
+                        <Nav/>
+                        <Switch>
+                            <Route exact path="/" component={Content}/>
+                            <Route path="/about" component={About}/> 
+                            <Route path="/blog" component={Blog}/> 
+                            {/* any route with any params calling this component  */}
+                            <Route path="/:test_params" component={Params}/>    
+                        </Switch>
+                         
                     </div>
                 </BrowserRouter>
             </div>
